@@ -10,10 +10,10 @@
 //                      QUESTION 4
 
 void send_rrq(int sockfd, const char *filename, const char *mode, struct sockaddr *server_addr, socklen_t server_len) {
-    unsigned char rrq[512]; // Paquet de requête
+    unsigned char rrq[512]; //request
     int len = 0;
 
-    // Code de l'opération RRQ (2 octets)
+    //RRQ code
     rrq[len++] = 0x00;
     rrq[len++] = 0x01; // RRQ
 
@@ -21,16 +21,16 @@ void send_rrq(int sockfd, const char *filename, const char *mode, struct sockadd
     strcpy((char *)&rrq[len], filename);
     len += strlen(filename) + 1;
 
-    // Mode de transfert (terminé par 0x00)
+    //transfer mode
     strcpy((char *)&rrq[len], mode);
     len += strlen(mode) + 1;
 
-    // Envoi de la requête au serveur
+    //sending request to server
     ssize_t sent_bytes = sendto(sockfd, rrq, len, 0, server_addr, server_len);
     if (sent_bytes == -1) {
-        perror("Erreur d'envoi de la requête RRQ");
+        perror("Error in sending RRQ request");
         exit(EXIT_FAILURE);
     }
 
-     printf("Requête RRQ envoyée pour le fichier : %s\n", filename);
+     printf("Request RRQ sendt for the file : %s\n", filename);
 }

@@ -8,8 +8,8 @@ void gettftp(const char *server, const char *filename){
 
 //                      QUESTION 1
 
-    printf("Adresse du serveur : %s\n", server);
-    printf("Nom du fichier : %s\n", filename);
+    printf("Server address : %s\n", server);
+    printf("NFile Name : %s\n", filename);
 
 
 //                      QUESTION 4
@@ -22,7 +22,7 @@ void gettftp(const char *server, const char *filename){
 
     sfd = socket(AF_INET, SOCK_DGRAM, 0);  //UDP socket
     if (sfd == -1) {
-        perror("Erreur de création du socket");
+        perror("Creation of socket error");
         exit(EXIT_FAILURE);
     }
 
@@ -31,12 +31,12 @@ void gettftp(const char *server, const char *filename){
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(69);
     if (inet_pton(AF_INET, server, &server_addr.sin_addr) <= 0) {
-        perror("Adresse IP invalide");
+        perror("Invalid IP address");
         exit(EXIT_FAILURE);
     }
 
     //call to rrq.c
-    
+
     send_rrq(sfd, filename, "octet", (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     //closure of the socket

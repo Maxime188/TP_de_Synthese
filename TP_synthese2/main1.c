@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 
 
     if (argc<4){
-        printf("Usage: %s [gettftp|puttftp] <server> <file>\n", argv[0]);
+        printf("Use: %s [gettftp|puttftp] <server> <file>\n", argv[0]);
         return 1;
     }
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
         return 0;
     }
     else{
-        printf("Commande inconnue: %s \n", command);
+        printf("Unknown command: %s \n", command);
         return 1;
     }
     return 0;
