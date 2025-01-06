@@ -10,7 +10,10 @@
 #include <unistd.h>
 
 
+
+
 int main(int argc, char *argv[]){
+
 
     if (argc<4){
         printf("Usage: %s [gettftp|puttftp] <server> <file>\n", argv[0]);
